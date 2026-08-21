@@ -114,7 +114,7 @@ export default function ReportsPage() {
           },
         }}
       >
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap" data-tour="reports-date-range">
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline" size="sm" className="text-xs h-8 border-border/60 gap-1.5">
@@ -142,6 +142,7 @@ export default function ReportsPage() {
             variant="outline" size="sm"
             className="text-xs h-8 border-border/60 gap-1.5"
             onClick={() => downloadCSV(revenueData.map((r) => ({ Month: r.month, Revenue: r.revenue })), "revenue-report.csv")}
+            data-tour="reports-export"
           >
             <Download className="h-3.5 w-3.5" />
             Export CSV
@@ -150,7 +151,7 @@ export default function ReportsPage() {
       </PageHeader>
 
       {/* KPI Cards */}
-      <KPICards />
+      <div data-tour="reports-kpis"><KPICards /></div>
 
       {/* ── Charts Row 1: Revenue + Treatment Distribution ── */}
       <motion.div
@@ -160,7 +161,7 @@ export default function ReportsPage() {
         animate="visible"
       >
         {/* Revenue Trend (area — smoother) */}
-        <motion.div variants={stagger.item} className="lg:col-span-2">
+        <motion.div variants={stagger.item} className="lg:col-span-2" data-tour="reports-revenue-trend">
           <Card className="border-border bg-card shadow-sm h-full">
             <CardHeader className="pb-2 border-b border-border/40">
               <div className="flex items-center justify-between">
@@ -198,7 +199,7 @@ export default function ReportsPage() {
         </motion.div>
 
         {/* Treatment Distribution donut */}
-        <motion.div variants={stagger.item}>
+        <motion.div variants={stagger.item} data-tour="reports-treatment-mix">
           <Card className="border-border bg-card shadow-sm h-full">
             <CardHeader className="pb-2 border-b border-border/40">
               <CardTitle className="text-[15px] font-semibold">Treatment Mix</CardTitle>
@@ -276,7 +277,7 @@ export default function ReportsPage() {
         </motion.div>
 
         {/* Dentist Leaderboard */}
-        <motion.div variants={stagger.item}>
+        <motion.div variants={stagger.item} data-tour="reports-dentist-performance">
           <Card className="border-border bg-card shadow-sm">
             <CardHeader className="pb-2 border-b border-border/40">
               <div className="flex items-center justify-between">

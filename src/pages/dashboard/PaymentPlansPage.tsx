@@ -109,12 +109,12 @@ export default function PaymentPlansPage() {
           },
         }}
       >
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setCreateOpen(true)}>
+        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setCreateOpen(true)} data-tour="payment-plans-create">
           <Plus className="mr-2 h-4 w-4" /> Create Plan
         </Button>
       </PageHeader>
 
-      <motion.div className="grid gap-4 sm:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible">
+      <motion.div className="grid gap-4 sm:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible" data-tour="payment-plans-stats">
         <motion.div variants={stagger.item}>
           <Card className="glass-card">
             <CardContent className="p-5 flex items-center gap-4">
@@ -156,9 +156,9 @@ export default function PaymentPlansPage() {
         </motion.div>
       </motion.div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2" data-tour="payment-plans-layout">
         {/* Plans List */}
-        <Card className="glass-card overflow-hidden">
+        <Card className="glass-card overflow-hidden" data-tour="payment-plans-list">
           <CardHeader className="pb-3 border-b border-border/30">
             <CardTitle className="text-base">Payment Plans</CardTitle>
             <CardDescription>{plans.length} plan{plans.length !== 1 ? "s" : ""}</CardDescription>
@@ -191,7 +191,9 @@ export default function PaymentPlansPage() {
         </Card>
 
         {/* Installment Details */}
-        <InstallmentDetail planId={selectedPlan} plans={plans} />
+        <div data-tour="payment-plans-installments">
+          <InstallmentDetail planId={selectedPlan} plans={plans} />
+        </div>
       </div>
 
       {/* Create Dialog */}

@@ -199,7 +199,7 @@ export default function ConsentFormsPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Consent Forms" description="Manage consent form templates and patient consents">
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap" data-tour="consent-forms-actions">
           <Button variant="outline" size="sm" onClick={() => setUploadDialogOpen(true)}>
             <Upload className="mr-2 h-4 w-4" /> Upload Scanned
           </Button>
@@ -213,24 +213,25 @@ export default function ConsentFormsPage() {
               <Library className="mr-2 h-4 w-4" /> Import Templates
             </Button>
           )}
-          <Button size="sm" onClick={() => setFormDialogOpen(true)} className="bg-secondary hover:bg-secondary/90">
+          <Button size="sm" onClick={() => setFormDialogOpen(true)} className="bg-secondary hover:bg-secondary/90" data-tour="consent-forms-create">
             <Plus className="mr-2 h-4 w-4" /> Create Consent
           </Button>
         </div>
       </PageHeader>
 
       <Tabs defaultValue="forms">
-        <TabsList>
+        <TabsList data-tour="consent-forms-tabs">
           <TabsTrigger value="forms">Patient Consents</TabsTrigger>
           <TabsTrigger value="templates">Templates</TabsTrigger>
         </TabsList>
 
         <TabsContent value="forms" className="mt-4 space-y-4">
-          <div className="relative max-w-sm">
+          <div className="relative max-w-sm" data-tour="consent-forms-search">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
           </div>
 
+          <div data-tour="consent-forms-list">
           {filtered.length === 0 ? (
             <Card><CardContent className="py-10 text-center text-sm text-muted-foreground">No consent forms found.</CardContent></Card>
           ) : filtered.map((f: any) => {
@@ -268,9 +269,10 @@ export default function ConsentFormsPage() {
               </motion.div>
             );
           })}
+          </div>
         </TabsContent>
 
-        <TabsContent value="templates" className="mt-4 space-y-3">
+        <TabsContent value="templates" className="mt-4 space-y-3" data-tour="consent-forms-templates">
           {templates.length === 0 ? (
             <Card>
               <CardContent className="py-10 text-center space-y-3">

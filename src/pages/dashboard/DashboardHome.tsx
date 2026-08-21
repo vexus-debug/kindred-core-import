@@ -177,7 +177,7 @@ export default function DashboardHome() {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 shrink-0">
+          <div className="flex flex-wrap gap-2 shrink-0" data-tour="dashboard-quick-actions">
             {quickActions.map((action: any) => (
               <Button key={action.to} size="sm" variant="outline" className="gap-1.5 rounded-lg text-xs border-border hover:border-primary/40 hover:bg-primary/5 transition-all" asChild>
                 <Link to={action.to}>
@@ -193,6 +193,7 @@ export default function DashboardHome() {
       {/* ── Row 2: Bento KPI Grid ──────────────────────────────── */}
       <motion.div
         className="grid gap-3 grid-cols-2 lg:grid-cols-4"
+        data-tour="dashboard-kpi-cards"
         variants={stagger.container}
         initial="hidden"
         animate="visible"
@@ -297,6 +298,7 @@ export default function DashboardHome() {
       {/* ── Row 2b: Insight widgets ─────────────────────────────── */}
       <motion.div
         className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        data-tour="dashboard-insight-widgets"
         variants={stagger.container}
         initial="hidden"
         animate="visible"
@@ -393,7 +395,7 @@ export default function DashboardHome() {
                         <BarChart3 className="h-4 w-4 text-primary" />
                       </div>
                       <div>
-                        <CardTitle className="text-sm font-semibold">Revenue Overview</CardTitle>
+                        <CardTitle className="text-sm font-semibold" data-tour="dashboard-revenue-chart">Revenue Overview</CardTitle>
                         <CardDescription className="text-[11px]">Monthly trend (₦)</CardDescription>
                       </div>
                     </div>
@@ -449,7 +451,7 @@ export default function DashboardHome() {
                     <CircleDot className="h-4 w-4 text-gold-deep" />
                   </div>
                   <div>
-                    <CardTitle className="text-sm font-semibold">Treatments</CardTitle>
+                    <CardTitle className="text-sm font-semibold" data-tour="dashboard-treatment-breakdown">Treatments</CardTitle>
                     <CardDescription className="text-[11px]">Distribution by type</CardDescription>
                   </div>
                 </div>
@@ -511,7 +513,7 @@ export default function DashboardHome() {
                     <CalendarDays className="h-4 w-4 text-emerald-600" />
                   </div>
                   <div>
-                    <CardTitle className="text-sm font-semibold">Today's Schedule</CardTitle>
+                    <CardTitle className="text-sm font-semibold" data-tour="dashboard-today-schedule">Today's Schedule</CardTitle>
                     <CardDescription className="text-[11px]">
                       {schedule.filter(a => a.status === "completed").length} done · {schedule.filter(a => a.status === "scheduled").length} upcoming
                     </CardDescription>
@@ -634,7 +636,7 @@ export default function DashboardHome() {
                 <Activity className="h-4 w-4 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-sm font-semibold">Activity</CardTitle>
+                <CardTitle className="text-sm font-semibold" data-tour="dashboard-activity-feed">Activity</CardTitle>
                 <CardDescription className="text-[11px]">Latest updates</CardDescription>
               </div>
             </div>

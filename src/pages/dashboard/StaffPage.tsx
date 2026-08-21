@@ -74,7 +74,7 @@ export default function StaffPage() {
         }}
       >
         {isAdmin && (
-          <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+          <Button data-tour="staff-add" size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
             <Plus className="mr-2 h-4 w-4" /> Add Staff
           </Button>
         )}
@@ -89,7 +89,7 @@ export default function StaffPage() {
       ) : staff.length === 0 ? (
         <EmptyState icon={UserCog} title="No staff members" description="Add team members to manage your clinic staff." actionLabel="Add Staff" onAction={() => setAddOpen(true)} />
       ) : (
-        <motion.div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible">
+        <motion.div data-tour="staff-grid" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible">
           {staff.map((member) => (
             <motion.div key={member.id} variants={stagger.item}>
               <Card className="glass-card hover:shadow-lg hover:shadow-secondary/5 transition-all duration-300 group hover:border-secondary/20">
@@ -104,7 +104,7 @@ export default function StaffPage() {
                       <p className="font-medium truncate group-hover:text-secondary transition-colors">{member.full_name}</p>
                       <p className="text-xs text-muted-foreground">{member.specialty || member.role}</p>
                       <div className="flex items-center gap-2 mt-2">
-                        <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium ${roleColors[member.role] || "bg-muted text-muted-foreground"}`}>
+                        <span data-tour="staff-role-badge" className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium ${roleColors[member.role] || "bg-muted text-muted-foreground"}`}>
                           {member.role}
                         </span>
                         <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${member.status === "active" ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400" : "bg-muted text-muted-foreground"}`}>
@@ -115,7 +115,7 @@ export default function StaffPage() {
                       <p className="text-xs text-muted-foreground mt-2 font-mono">{member.phone}</p>
                     </div>
                     {isAdmin && (
-                      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => setEditStaff(member)}>
+                      <Button data-tour="staff-edit" variant="ghost" size="icon" className="h-7 w-7 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => setEditStaff(member)}>
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
                     )}

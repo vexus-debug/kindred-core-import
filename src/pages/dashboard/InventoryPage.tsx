@@ -156,14 +156,14 @@ export default function InventoryPage() {
           </Badge>
         ) : undefined}
       >
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+        <Button data-tour="inventory-add" size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Add Item
         </Button>
       </PageHeader>
 
       {lowStock.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <Card className="border-amber-500/20 bg-amber-500/5 glass-card">
+          <Card data-tour="inventory-low-stock" className="border-amber-500/20 bg-amber-500/5 glass-card">
             <CardContent className="p-4 flex items-center gap-3">
               <div className="h-9 w-9 rounded-xl bg-amber-500/10 flex items-center justify-center">
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
@@ -178,7 +178,7 @@ export default function InventoryPage() {
       )}
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-        <Card className="glass-card overflow-hidden">
+        <Card data-tour="inventory-table" className="glass-card overflow-hidden">
           <CardContent className="p-0">
             {isLoading ? (
               <TableSkeleton columns={7} rows={6} />
@@ -224,15 +224,15 @@ export default function InventoryPage() {
                             <div className="flex items-center gap-1">
                               {canManageStock && (
                                 <>
-                                  <Button variant="outline" size="sm" className="h-7 text-xs border-border/50 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => { setRestockId(item.id); setRestockQty(""); }}>
+                                  <Button data-tour="inventory-restock" variant="outline" size="sm" className="h-7 text-xs border-border/50 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => { setRestockId(item.id); setRestockQty(""); }}>
                                     Restock
                                   </Button>
-                                  <Button variant="outline" size="sm" className="h-7 text-xs border-destructive/30 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => { setReduceId(item.id); setReduceQty(""); }}>
+                                  <Button data-tour="inventory-use" variant="outline" size="sm" className="h-7 text-xs border-destructive/30 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => { setReduceId(item.id); setReduceQty(""); }}>
                                     <Minus className="mr-1 h-3 w-3" /> Use
                                   </Button>
                                 </>
                               )}
-                              <Button variant="ghost" size="icon" className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => setEditItem(item)}>
+                              <Button data-tour="inventory-edit" variant="ghost" size="icon" className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => setEditItem(item)}>
                                 <Pencil className="h-3.5 w-3.5" />
                               </Button>
                               {isAdmin && (

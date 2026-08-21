@@ -84,7 +84,7 @@ export default function SchedulesPage() {
         }}
       >
         <Select value={selectedStaff} onValueChange={setSelectedStaff}>
-          <SelectTrigger className="w-[200px] bg-muted/30">
+          <SelectTrigger className="w-[200px] bg-muted/30" data-tour="schedules-staff-select">
             <SelectValue placeholder="Select staff" />
           </SelectTrigger>
           <SelectContent>
@@ -103,7 +103,7 @@ export default function SchedulesPage() {
           </CardContent>
         </Card>
       ) : (
-        <motion.div className="grid gap-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div className="grid gap-3" data-tour="schedules-week-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           {DAY_NAMES.map((dayName, i) => {
             const schedule = getScheduleForDay(i);
             const isAvailable = schedule?.is_available ?? (i >= 1 && i <= 5);
@@ -113,13 +113,13 @@ export default function SchedulesPage() {
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4 flex-wrap">
                       <div className="w-24 flex items-center gap-2">
-                        <Switch checked={isAvailable} onCheckedChange={() => handleToggle(i, schedule)} />
+                        <Switch checked={isAvailable} onCheckedChange={() => handleToggle(i, schedule)} data-tour={i === 0 ? "schedules-day-toggle" : undefined} />
                         <span className="text-sm font-medium">{dayName.slice(0, 3)}</span>
                       </div>
                       {isAvailable && (
                         <>
                           <div className="flex items-center gap-2">
-                            <Label className="text-xs text-muted-foreground">Start</Label>
+                            <Label className="text-xs text-muted-foreground" data-tour={i === 0 ? "schedules-time-range" : undefined}>Start</Label>
                             <Input
                               type="time"
                               className="w-28 h-8 text-xs bg-muted/30"
@@ -137,7 +137,7 @@ export default function SchedulesPage() {
                             />
                           </div>
                           <div className="flex items-center gap-2">
-                            <Label className="text-xs text-muted-foreground">Break</Label>
+                            <Label className="text-xs text-muted-foreground" data-tour={i === 0 ? "schedules-break" : undefined}>Break</Label>
                             <Input
                               type="time"
                               className="w-28 h-8 text-xs bg-muted/30"

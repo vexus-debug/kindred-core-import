@@ -72,7 +72,7 @@ export default function LabWorkPage() {
           },
         }}
       >
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setLabOpen(true)}>
+        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setLabOpen(true)} data-tour="lab-work-new">
           <Plus className="mr-2 h-4 w-4" />
           New Lab Order
         </Button>
@@ -85,13 +85,13 @@ export default function LabWorkPage() {
           ))}
         </div>
       ) : (
-        <motion.div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" variants={stagger.container} initial="hidden" animate="visible">
+        <motion.div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" variants={stagger.container} initial="hidden" animate="visible" data-tour="lab-work-board">
           {statuses.map((status) => {
             const orders = labOrders.filter((o) => o.status === status);
             return (
               <motion.div key={status} variants={stagger.item}>
                 <Card className="glass-card">
-                  <CardHeader className="pb-2 border-b border-border/30">
+                  <CardHeader className="pb-2 border-b border-border/30" data-tour={`lab-work-column-${status}`}>
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-sm capitalize">{status.replace("-", " ")}</CardTitle>
                       <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium ${statusStyles[status]}`}>
@@ -115,7 +115,7 @@ export default function LabWorkPage() {
                           </div>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="icon" className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                              <Button variant="ghost" size="icon" className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" data-tour="lab-work-share">
                                 <Share2 className="h-3.5 w-3.5" />
                               </Button>
                             </DropdownMenuTrigger>

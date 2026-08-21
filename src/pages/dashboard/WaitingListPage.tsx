@@ -84,12 +84,12 @@ export default function WaitingListPage() {
           },
         }}
       >
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" data-tour="waiting-list-checkin" onClick={() => setAddOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Check In
         </Button>
       </PageHeader>
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-4" data-tour="waiting-list-stats">
         {[
           { label: "Waiting", count: queue.filter((q) => q.status === "waiting").length, color: "text-amber-500" },
           { label: "Called", count: queue.filter((q) => q.status === "called").length, color: "text-blue-500" },
@@ -107,7 +107,7 @@ export default function WaitingListPage() {
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
         <Card className="glass-card overflow-hidden">
-          <CardContent className="p-0">
+          <CardContent className="p-0" data-tour="waiting-list-queue">
             {isLoading ? (
               <TableSkeleton columns={5} rows={5} />
             ) : activeQueue.length === 0 ? (
@@ -156,7 +156,7 @@ export default function WaitingListPage() {
                         <td className="py-3 px-4">
                           <div className="flex items-center gap-1">
                             {entry.status === "waiting" && (
-                              <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => handleStatusChange(entry.id, "called")}>
+                              <Button variant="outline" size="sm" className="h-7 text-xs" data-tour="waiting-list-call-next" onClick={() => handleStatusChange(entry.id, "called")}>
                                 Call <ArrowRight className="ml-1 h-3 w-3" />
                               </Button>
                             )}

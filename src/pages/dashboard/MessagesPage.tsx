@@ -190,11 +190,11 @@ export default function MessagesPage() {
 
       <div className="flex flex-1 overflow-hidden border-t border-border/40">
         {/* Conversations List */}
-        <div className="w-80 border-r border-border/40 flex flex-col bg-card/30">
+        <div data-tour="messages-conversations" className="w-80 border-r border-border/40 flex flex-col bg-card/30">
           <div className="p-3 border-b border-border/40 space-y-2">
             <Dialog open={newMsgOpen} onOpenChange={setNewMsgOpen}>
               <DialogTrigger asChild>
-                <Button size="sm" className="w-full gap-2">
+                <Button data-tour="messages-new" size="sm" className="w-full gap-2">
                   <MessageSquarePlus className="h-4 w-4" />
                   New Message
                 </Button>
@@ -236,6 +236,7 @@ export default function MessagesPage() {
             <div className="relative">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
               <Input
+                data-tour="messages-search"
                 placeholder="Search conversations..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -322,7 +323,7 @@ export default function MessagesPage() {
               </div>
 
               {/* Messages */}
-              <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+              <ScrollArea data-tour="messages-thread" className="flex-1 p-4" ref={scrollRef}>
                 {threadLoading ? (
                   <div className="text-center text-sm text-muted-foreground">Loading messages...</div>
                 ) : thread.length === 0 ? (
@@ -380,13 +381,14 @@ export default function MessagesPage() {
               )}
 
               {/* Input */}
-              <div className="p-3 border-t border-border/40 bg-card/30">
+              <div data-tour="messages-composer" className="p-3 border-t border-border/40 bg-card/30">
                 {/* Attachment search */}
                 <div className="relative mb-2">
                   <div className="flex gap-2">
                     <div className="relative flex-1">
                       <Paperclip className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                       <Input
+                        data-tour="messages-attach"
                         placeholder="Attach record (search patients, invoices, treatments...)"
                         value={attachmentSearch}
                         onChange={(e) => searchAttachments(e.target.value)}

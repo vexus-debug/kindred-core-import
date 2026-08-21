@@ -120,7 +120,7 @@ export default function PatientsPage() {
           <CardHeader className="pb-3 border-b border-border/50">
             <div className="flex flex-col sm:flex-row gap-3">
               {/* Search */}
-              <div className="relative flex-1">
+              <div className="relative flex-1" data-tour="patients-search">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                 <Input
                   placeholder="Search by name, ID or phone…"
@@ -131,7 +131,7 @@ export default function PatientsPage() {
               </div>
 
               {/* Filters */}
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap" data-tour="patients-filters">
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
                   <SelectTrigger className="w-[130px] h-9 text-sm bg-muted/40 border-border/50">
                     <Filter className="mr-1.5 h-3.5 w-3.5 text-muted-foreground" />
@@ -156,7 +156,7 @@ export default function PatientsPage() {
                 </Select>
 
                 {/* View toggle */}
-                <div className="flex border border-border/50 rounded-lg overflow-hidden">
+                <div className="flex border border-border/50 rounded-lg overflow-hidden" data-tour="patients-view-toggle">
                   <button
                     className={cn("px-2.5 py-1.5 transition-all", viewMode === "table" ? "bg-primary text-primary-foreground" : "bg-muted/30 text-muted-foreground hover:bg-muted/60")}
                     onClick={() => setViewMode("table")}
@@ -176,7 +176,7 @@ export default function PatientsPage() {
             </div>
           </CardHeader>
 
-          <CardContent className="p-0">
+          <CardContent className="p-0" data-tour="patients-list">
             {isLoading ? (
               <TableSkeleton columns={6} rows={8} />
             ) : filtered.length === 0 ? (

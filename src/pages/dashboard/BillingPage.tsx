@@ -139,11 +139,11 @@ export default function BillingPage() {
         }}
       >
         <div className="flex gap-2 flex-wrap">
-          <Button size="sm" variant="outline" onClick={() => setStatementOpen(true)} className="gap-1.5">
+          <Button size="sm" variant="outline" onClick={() => setStatementOpen(true)} className="gap-1.5" data-tour="billing-statement">
             <CalendarRange className="h-4 w-4" />
             Client Statement
           </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-sm shadow-primary/20 gap-1.5" onClick={() => setInvoiceOpen(true)}>
+          <Button size="sm" className="bg-primary hover:bg-primary/90 shadow-sm shadow-primary/20 gap-1.5" onClick={() => setInvoiceOpen(true)} data-tour="billing-create-invoice">
             <FileText className="h-4 w-4" />
             Create Invoice
           </Button>
@@ -156,6 +156,7 @@ export default function BillingPage() {
         variants={stagger.container}
         initial="hidden"
         animate="visible"
+        data-tour="billing-stats"
       >
         {billingCards.map((card, i) => (
           <motion.div key={i} variants={stagger.item}>
@@ -184,8 +185,8 @@ export default function BillingPage() {
       </motion.div>
 
       {/* ── Filter Toolbar ── */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
+      <div className="flex flex-col sm:flex-row gap-3" data-tour="billing-filters">
+        <div className="relative flex-1" data-tour="billing-search">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           <Input
             placeholder="Search by patient name or invoice number…"
@@ -210,7 +211,7 @@ export default function BillingPage() {
 
       {/* ── Invoice Table ── */}
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-        <Card className="border-border bg-card shadow-sm overflow-hidden">
+        <Card className="border-border bg-card shadow-sm overflow-hidden" data-tour="billing-table">
           <CardHeader className="pb-3 border-b border-border/50">
             <div className="flex items-center justify-between">
               <div>

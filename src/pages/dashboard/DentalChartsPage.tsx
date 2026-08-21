@@ -222,7 +222,7 @@ export default function DentalChartsPage() {
           },
         }}
       >
-        <div className="w-64">
+        <div className="w-64" data-tour="dental-charts-patient-select">
           <Select value={patientId || ""} onValueChange={(v) => { setSelectedPatientId(v); setSelectedTooth(null); }}>
             <SelectTrigger className="bg-muted/30 border-border/40">
               <SelectValue placeholder="Select patient" />
@@ -237,10 +237,11 @@ export default function DentalChartsPage() {
       </PageHeader>
 
       {/* Dental Chart Card */}
-      <Card>
+      <Card data-tour="dental-charts-chart">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-bold">Tooth Chart — Adult (FDI Notation)</CardTitle>
-          <div className="flex flex-wrap gap-x-3 gap-y-1.5 mt-2">
+          <div className="flex flex-wrap gap-x-3 gap-y-1.5 mt-2" data-tour="dental-charts-legend">
+            {/* legend */}
             {statusOptions.map((item) => (
               <div key={item.value} className="flex items-center gap-1.5">
                 <span className={`w-3 h-3 rounded-full ${item.dot}`} />
@@ -285,7 +286,7 @@ export default function DentalChartsPage() {
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.25 }}
           >
-            <Card>
+            <Card data-tour="dental-charts-tooth-detail">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div>
@@ -294,7 +295,7 @@ export default function DentalChartsPage() {
                       {getStatusStyle(selectedData?.status || "healthy").label}
                     </Badge>
                   </div>
-                  <Button size="sm" onClick={handleAddProcedure} className="gap-1">
+                  <Button size="sm" onClick={handleAddProcedure} className="gap-1" data-tour="dental-charts-add-procedure">
                     <Plus className="h-3.5 w-3.5" /> Add Procedure
                   </Button>
                 </div>
@@ -310,7 +311,7 @@ export default function DentalChartsPage() {
                     <h4 className="text-xs font-semibold mb-3 uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                       <Calendar className="h-3 w-3" /> History ({selectedData.history.length})
                     </h4>
-                    <div className="space-y-2">
+                    <div className="space-y-2" data-tour="dental-charts-history">
                       {displayedHistory.map((h) => (
                         <div key={h.id} className="group flex items-start gap-3 text-xs bg-muted/30 rounded-lg p-3 border border-border/20 hover:border-border/40 transition-colors">
                           <div className="flex-1 min-w-0">

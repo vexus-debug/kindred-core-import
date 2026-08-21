@@ -51,13 +51,13 @@ export default function PurchaseOrdersPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Purchase Orders" description={`${orders.length} orders`}>
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+        <Button data-tour="purchase-orders-add" size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> New PO
         </Button>
       </PageHeader>
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-        <Card className="glass-card overflow-hidden">
+        <Card data-tour="purchase-orders-table" className="glass-card overflow-hidden">
           <CardContent className="p-0">
             {isLoading ? (
               <TableSkeleton columns={6} rows={5} />
@@ -84,19 +84,19 @@ export default function PurchaseOrdersPage() {
                         <td className="py-3 px-4 text-muted-foreground">{format(new Date(po.order_date), "dd MMM yyyy")}</td>
                         <td className="py-3 px-4 font-semibold">₦{Number(po.total).toLocaleString()}</td>
                         <td className="py-3 px-4">
-                          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium ${statusColors[po.status] || ""}`}>
+                          <span data-tour="purchase-orders-status" className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium ${statusColors[po.status] || ""}`}>
                             {po.status}
                           </span>
                         </td>
                         <td className="py-3 px-4">
                           <div className="flex items-center gap-1">
                             {po.status === "draft" && (
-                              <Button variant="outline" size="sm" className="h-7 text-xs" onClick={() => handleStatusChange(po.id, "ordered")}>
+                              <Button data-tour="purchase-orders-mark-ordered" variant="outline" size="sm" className="h-7 text-xs" onClick={() => handleStatusChange(po.id, "ordered")}>
                                 Mark Ordered
                               </Button>
                             )}
                             {po.status === "ordered" && (
-                              <Button variant="outline" size="sm" className="h-7 text-xs text-emerald-600" onClick={() => handleStatusChange(po.id, "received")}>
+                              <Button data-tour="purchase-orders-received" variant="outline" size="sm" className="h-7 text-xs text-emerald-600" onClick={() => handleStatusChange(po.id, "received")}>
                                 <CheckCircle2 className="mr-1 h-3 w-3" /> Received
                               </Button>
                             )}
@@ -115,7 +115,7 @@ export default function PurchaseOrdersPage() {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="backdrop-blur-xl bg-card/95">
           <DialogHeader><DialogTitle>New Purchase Order</DialogTitle></DialogHeader>
-          <div className="space-y-3">
+          <div data-tour="purchase-orders-form" className="space-y-3">
             <div className="space-y-1">
               <Label className="text-xs">PO Number *</Label>
               <Input value={form.order_number} onChange={(e) => setForm({ ...form, order_number: e.target.value })} placeholder="PO-001" className="bg-muted/30" />

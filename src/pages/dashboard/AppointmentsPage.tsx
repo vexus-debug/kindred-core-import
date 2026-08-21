@@ -189,7 +189,7 @@ export default function AppointmentsPage() {
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
         <Tabs defaultValue="schedule">
-          <TabsList className="bg-muted/50 backdrop-blur-sm">
+          <TabsList className="bg-muted/50 backdrop-blur-sm" data-tour="appointments-tabs">
             <TabsTrigger value="schedule">Schedule View</TabsTrigger>
             <TabsTrigger value="list">List View</TabsTrigger>
           </TabsList>
@@ -199,7 +199,7 @@ export default function AppointmentsPage() {
               <CardHeader className="pb-3 border-b border-border/30">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={nav.prev}>
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={nav.prev} data-tour="appointments-nav">
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
                     <CardTitle className="text-base">{titleText}</CardTitle>
@@ -218,7 +218,7 @@ export default function AppointmentsPage() {
                         <Calendar mode="single" selected={currentDate} onSelect={(d) => d && setCurrentDate(d)} initialFocus className="p-3 pointer-events-auto" />
                       </PopoverContent>
                     </Popover>
-                    <div className="flex border border-border/50 rounded-lg overflow-hidden">
+                    <div className="flex border border-border/50 rounded-lg overflow-hidden" data-tour="appointments-view-toggle">
                       {(["day", "week", "month"] as const).map((mode) => (
                         <button key={mode} className={cn("px-3 py-1.5 text-xs font-medium transition-all capitalize", viewMode === mode ? "bg-secondary text-secondary-foreground" : "bg-muted/30 hover:bg-muted/60")} onClick={() => setViewMode(mode)}>
                           {mode}
@@ -226,7 +226,7 @@ export default function AppointmentsPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex gap-2.5 hidden md:flex">
+                  <div className="flex gap-2.5 hidden md:flex" data-tour="appointments-status-legend">
                     {Object.entries(statusColors).map(([status]) => (
                       <div key={status} className="flex items-center gap-1.5">
                         <span className={`h-2 w-2 rounded-full ${statusDots[status]}`} />
@@ -236,7 +236,7 @@ export default function AppointmentsPage() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-0 overflow-x-auto">
+              <CardContent className="p-0 overflow-x-auto" data-tour="appointments-calendar">
                 {isLoading && viewMode !== "month" ? (
                   <TableSkeleton columns={4} rows={8} />
                 ) : viewMode === "day" ? (
