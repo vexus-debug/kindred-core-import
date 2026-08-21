@@ -100,7 +100,7 @@ export default function RevenueAllocationPage() {
           title="Revenue Allocation"
           description="Automatic revenue distribution across operations, staff, savings, investors & reserves."
         />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3" data-tour="revenue-allocation-toggle">
           <Label htmlFor="allocation-toggle" className="text-sm text-muted-foreground">
             System {isActive ? "Active" : "Disabled"}
           </Label>
@@ -113,7 +113,7 @@ export default function RevenueAllocationPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-3" data-tour="revenue-allocation-summary">
         <SummaryCard
           title="Total Revenue"
           value={fmt(summary?.totalRevenue ?? 0)}
@@ -139,7 +139,7 @@ export default function RevenueAllocationPage() {
       </div>
 
       {/* Revenue Allocation Rules */}
-      <Card>
+      <Card data-tour="revenue-allocation-rules">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <div>
             <CardTitle className="text-lg">Allocation Rules</CardTitle>
@@ -253,7 +253,7 @@ export default function RevenueAllocationPage() {
       </Card>
 
       {/* Staff Operations Allocation */}
-      <Card>
+      <Card data-tour="revenue-allocation-staff">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <div>
             <CardTitle className="text-lg">Staff Operations</CardTitle>
@@ -341,7 +341,7 @@ export default function RevenueAllocationPage() {
       </Card>
 
       {/* War Chest Detail */}
-      <Card>
+      <Card data-tour="revenue-allocation-warchest">
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
             <Shield className="h-5 w-5 text-secondary" /> War Chest Reserve

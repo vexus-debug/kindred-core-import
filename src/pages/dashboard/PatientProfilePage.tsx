@@ -106,7 +106,7 @@ export default function PatientProfilePage() {
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div className="flex-1">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" data-tour="patients-detail-header">
             <h1 className="text-2xl font-bold">{patient.first_name} {patient.last_name}</h1>
             <Badge variant={patient.status === "active" ? "default" : "secondary"} className={patient.status === "active" ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100" : ""}>
               {patient.status}
@@ -116,11 +116,11 @@ export default function PatientProfilePage() {
             {patient.gender} · Age: {calculateAge(patient.date_of_birth)} · ID: {patient.id?.slice(0, 8)} · Registered: {patient.registered_date}
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={() => setEditOpen(true)}>
+        <Button variant="outline" size="sm" onClick={() => setEditOpen(true)} data-tour="patients-detail-edit">
           <Pencil className="mr-2 h-4 w-4" /> Edit
         </Button>
         {outstandingBalance > 0 && (
-          <div className="text-right">
+          <div className="text-right" data-tour="patients-detail-balance">
             <p className="text-xs text-muted-foreground">Outstanding</p>
             <p className="text-lg font-bold text-red-600">{formatCurrency(outstandingBalance)}</p>
           </div>
@@ -128,7 +128,7 @@ export default function PatientProfilePage() {
       </div>
 
       <Tabs defaultValue="overview">
-        <TabsList className="flex-wrap h-auto gap-1">
+        <TabsList className="flex-wrap h-auto gap-1" data-tour="patients-detail-tabs">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="history">Dental History</TabsTrigger>
           <TabsTrigger value="plans">Treatment Plans</TabsTrigger>
@@ -141,7 +141,7 @@ export default function PatientProfilePage() {
         </TabsList>
 
         {/* Overview */}
-        <TabsContent value="overview" className="mt-4 space-y-4">
+        <TabsContent value="overview" className="mt-4 space-y-4" data-tour="patients-detail-overview">
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader className="pb-2">
@@ -415,7 +415,7 @@ export default function PatientProfilePage() {
 
         {/* Clinical Notes (SOAP) - Dental Chart before Objective */}
         {canViewClinical && (
-          <TabsContent value="notes" className="mt-4 space-y-4">
+          <TabsContent value="notes" className="mt-4 space-y-4" data-tour="patients-detail-notes">
             <div className="flex justify-between items-center">
               <h3 className="text-sm font-medium">SOAP Notes</h3>
               {canEditClinical && (

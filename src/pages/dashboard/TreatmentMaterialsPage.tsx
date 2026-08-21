@@ -37,13 +37,13 @@ export default function TreatmentMaterialsPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Treatment Materials" description="Map treatments to inventory consumption">
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+        <Button data-tour="treatment-materials-add" size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Add Mapping
         </Button>
       </PageHeader>
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-        <Card className="glass-card overflow-hidden">
+        <Card data-tour="treatment-materials-table" className="glass-card overflow-hidden">
           <CardContent className="p-0">
             {isLoading ? (
               <TableSkeleton columns={4} rows={5} />
@@ -67,7 +67,7 @@ export default function TreatmentMaterialsPage() {
                         <td className="py-3 px-4 text-muted-foreground">{m.inventory?.name || "—"}</td>
                         <td className="py-3 px-4">{m.quantity_used} {m.inventory?.unit || ""}</td>
                         <td className="py-3 px-4">
-                          <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => deleteMaterial.mutateAsync(m.id)}>
+                          <Button data-tour="treatment-materials-delete" variant="ghost" size="icon" className="h-7 w-7 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => deleteMaterial.mutateAsync(m.id)}>
                             <Trash2 className="h-3.5 w-3.5" />
                           </Button>
                         </td>
@@ -84,7 +84,7 @@ export default function TreatmentMaterialsPage() {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="backdrop-blur-xl bg-card/95">
           <DialogHeader><DialogTitle>Map Treatment to Material</DialogTitle></DialogHeader>
-          <div className="space-y-3">
+          <div data-tour="treatment-materials-form" className="space-y-3">
             <div className="space-y-1">
               <Label className="text-xs">Treatment *</Label>
               <Select value={form.treatment_id} onValueChange={(v) => setForm({ ...form, treatment_id: v })}>

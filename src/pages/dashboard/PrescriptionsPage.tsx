@@ -55,7 +55,7 @@ export default function PrescriptionsPage() {
           },
         }}
       >
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setRxOpen(true)}>
+        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setRxOpen(true)} data-tour="prescriptions-new">
           <Plus className="mr-2 h-4 w-4" />
           New Prescription
         </Button>
@@ -70,11 +70,11 @@ export default function PrescriptionsPage() {
       ) : prescriptions.length === 0 ? (
         <EmptyState icon={FileText} title="No prescriptions yet" description="Create a prescription to get started with digital medication records." actionLabel="New Prescription" onAction={() => setRxOpen(true)} />
       ) : (
-        <motion.div className="space-y-4" variants={stagger.container} initial="hidden" animate="visible">
+        <motion.div className="space-y-4" variants={stagger.container} initial="hidden" animate="visible" data-tour="prescriptions-list">
           {prescriptions.map((rx) => (
             <motion.div key={rx.id} variants={stagger.item}>
               <Card className="glass-card hover:shadow-lg hover:shadow-secondary/5 transition-all duration-300 group hover:border-secondary/20">
-                <CardHeader className="pb-2">
+                <CardHeader className="pb-2" data-tour="prescriptions-card-header">
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle className="text-sm group-hover:text-secondary transition-colors">
@@ -84,12 +84,12 @@ export default function PrescriptionsPage() {
                         {rx.staff?.full_name || "Unknown"} · {rx.prescription_date}
                       </CardDescription>
                     </div>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button variant="ghost" size="icon" className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity" data-tour="prescriptions-print">
                       <Printer className="h-3.5 w-3.5" />
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent data-tour="prescriptions-medications">
                   <div className="space-y-2">
                     {rx.prescription_medications.map((med, i) => (
                       <div key={med.id} className="flex items-start gap-3 p-2.5 rounded-lg bg-muted/30 border border-border/20">

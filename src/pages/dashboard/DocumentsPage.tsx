@@ -59,13 +59,13 @@ export default function DocumentsPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Documents" description="Manage clinic licenses, certificates, and policies">
-        <Button onClick={() => setDialogOpen(true)} className="bg-secondary hover:bg-secondary/90">
+        <Button onClick={() => setDialogOpen(true)} className="bg-secondary hover:bg-secondary/90" data-tour="documents-upload">
           <Upload className="mr-2 h-4 w-4" /> Upload Document
         </Button>
       </PageHeader>
 
       {expiringSoon.length > 0 && (
-        <Card className="border-amber-200 bg-amber-50">
+        <Card className="border-amber-200 bg-amber-50" data-tour="documents-expiring">
           <CardContent className="py-3">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-amber-600" />
@@ -75,7 +75,7 @@ export default function DocumentsPage() {
         </Card>
       )}
 
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex gap-3 flex-wrap" data-tour="documents-filters">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search documents..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
@@ -89,7 +89,7 @@ export default function DocumentsPage() {
         </Select>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3" data-tour="documents-list">
         {filtered.length === 0 ? (
           <Card><CardContent className="py-10 text-center text-sm text-muted-foreground">No documents found.</CardContent></Card>
         ) : filtered.map((doc: any) => (
@@ -109,7 +109,7 @@ export default function DocumentsPage() {
                       </div>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive" onClick={() => deleteDoc.mutate(doc.id)}>
+                  <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive" onClick={() => deleteDoc.mutate(doc.id)} data-tour="documents-delete">
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>

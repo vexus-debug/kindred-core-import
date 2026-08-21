@@ -97,12 +97,12 @@ export default function ExpensesPage() {
           },
         }}
       >
-        <Button onClick={() => setDialogOpen(true)} className="bg-secondary hover:bg-secondary/90">
+        <Button onClick={() => setDialogOpen(true)} className="bg-secondary hover:bg-secondary/90" data-tour="expenses-add">
           <Plus className="mr-2 h-4 w-4" /> Add Expense
         </Button>
       </PageHeader>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2" data-tour="expenses-stats">
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="glass-card">
             <CardContent className="pt-6 flex items-center gap-4">
@@ -125,13 +125,13 @@ export default function ExpensesPage() {
         </Card>
       </div>
 
-      <div className="flex gap-3 flex-wrap">
-        <div className="relative flex-1 min-w-[200px]">
+      <div className="flex gap-3 flex-wrap" data-tour="expenses-filters">
+        <div className="relative flex-1 min-w-[200px]" data-tour="expenses-search">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search expenses..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
         <Select value={catFilter} onValueChange={setCatFilter}>
-          <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-[160px]" data-tour="expenses-category-filter"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
             {expenseCategories.map(c => <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>)}
@@ -139,7 +139,7 @@ export default function ExpensesPage() {
         </Select>
       </div>
 
-      <Card className="glass-card">
+      <Card className="glass-card" data-tour="expenses-table">
         <CardContent className="p-0">
           {filtered.length === 0 ? (
             <p className="text-sm text-muted-foreground py-10 text-center">No expenses found.</p>

@@ -30,13 +30,13 @@ export default function SuppliersPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Suppliers" description={`${suppliers.length} suppliers`}>
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
+        <Button data-tour="suppliers-add" size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => setAddOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Add Supplier
         </Button>
       </PageHeader>
 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-        <Card className="glass-card overflow-hidden">
+        <Card data-tour="suppliers-table" className="glass-card overflow-hidden">
           <CardContent className="p-0">
             {isLoading ? (
               <TableSkeleton columns={6} rows={5} />
@@ -63,10 +63,10 @@ export default function SuppliersPage() {
                         <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">{s.email || "—"}</td>
                         <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">{s.phone || "—"}</td>
                         <td className="py-3 px-4">
-                          <Badge variant="outline" className="text-[10px]">{s.status}</Badge>
+                          <Badge data-tour="suppliers-status" variant="outline" className="text-[10px]">{s.status}</Badge>
                         </td>
                         <td className="py-3 px-4">
-                          <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => deleteSupplier.mutateAsync(s.id)}>
+                          <Button data-tour="suppliers-delete" variant="ghost" size="icon" className="h-7 w-7 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => deleteSupplier.mutateAsync(s.id)}>
                             <Trash2 className="h-3.5 w-3.5" />
                           </Button>
                         </td>
@@ -83,7 +83,7 @@ export default function SuppliersPage() {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="backdrop-blur-xl bg-card/95">
           <DialogHeader><DialogTitle>Add Supplier</DialogTitle></DialogHeader>
-          <div className="space-y-3">
+          <div data-tour="suppliers-form" className="space-y-3">
             <div className="space-y-1">
               <Label className="text-xs">Name *</Label>
               <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="bg-muted/30" />

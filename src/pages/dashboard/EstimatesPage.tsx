@@ -101,12 +101,12 @@ export default function EstimatesPage() {
   return (
     <div className="space-y-6">
       <PageHeader title="Treatment Estimates" description="Generate cost estimates before invoicing">
-        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setCreateOpen(true); if (lineItems.length === 0) addLineItem(); }}>
+        <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setCreateOpen(true); if (lineItems.length === 0) addLineItem(); }} data-tour="estimates-new">
           <Plus className="mr-2 h-4 w-4" /> New Estimate
         </Button>
       </PageHeader>
 
-      <motion.div className="grid gap-4 sm:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible">
+      <motion.div className="grid gap-4 sm:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible" data-tour="estimates-stats">
         <motion.div variants={stagger.item}>
           <Card className="glass-card">
             <CardContent className="p-5 flex items-center gap-4">
@@ -142,12 +142,12 @@ export default function EstimatesPage() {
         </motion.div>
       </motion.div>
 
-      <div className="relative">
+      <div className="relative" data-tour="estimates-search">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input placeholder="Search estimates..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
       </div>
 
-      <Card className="glass-card overflow-hidden">
+      <Card className="glass-card overflow-hidden" data-tour="estimates-table">
         <CardContent className="p-0">
           {filtered.length === 0 ? (
             <EmptyState icon={FileText} title="No estimates" description="Create your first treatment estimate." actionLabel="New Estimate" onAction={() => setCreateOpen(true)} />
@@ -173,7 +173,7 @@ export default function EstimatesPage() {
                     <td className="py-3 px-4">
                       <Badge className={`text-[10px] ${statusStyles[est.status] || ""}`}>{est.status}</Badge>
                     </td>
-                    <td className="py-3 px-4 text-right">
+                    <td className="py-3 px-4 text-right" data-tour="estimates-actions">
                       <div className="flex items-center justify-end gap-1">
                         {est.status === "draft" && (
                           <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => updateStatus.mutate({ id: est.id, status: "sent" })}>

@@ -179,7 +179,7 @@ export default function TreatmentsPage() {
       />
 
       <Tabs defaultValue="catalog" className="space-y-4">
-        <TabsList className="bg-muted/50">
+        <TabsList className="bg-muted/50" data-tour="treatments-tabs">
           <TabsTrigger value="catalog" className="gap-2"><Stethoscope className="h-4 w-4" /> Catalog</TabsTrigger>
           <TabsTrigger value="plans" className="gap-2"><ClipboardList className="h-4 w-4" /> Treatment Plans</TabsTrigger>
         </TabsList>
@@ -187,12 +187,12 @@ export default function TreatmentsPage() {
         {/* ===== CATALOG TAB ===== */}
         <TabsContent value="catalog" className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-            <div className="relative max-w-md flex-1">
+            <div className="relative max-w-md flex-1" data-tour="treatments-search">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Search treatments..." className="pl-9 bg-muted/30 border-border/40" value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
             {isAdmin && (
-              <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setEditTreatment(null); setDialogOpen(true); }}>
+              <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setEditTreatment(null); setDialogOpen(true); }} data-tour="treatments-add-treatment">
                 <Plus className="mr-2 h-4 w-4" /> Add Treatment
               </Button>
             )}
@@ -207,7 +207,8 @@ export default function TreatmentsPage() {
           ) : filtered.length === 0 ? (
             <EmptyState icon={Stethoscope} title="No treatments found" description="Add treatments to your catalog to start managing procedures and pricing." actionLabel="Add Treatment" onAction={() => { setEditTreatment(null); setDialogOpen(true); }} />
           ) : (
-            categories.map((cat) => {
+            <div data-tour="treatments-catalog-list">
+            {categories.map((cat) => {
               const catTreatments = filtered.filter((t) => t.category === cat);
               if (catTreatments.length === 0) return null;
               return (
@@ -245,19 +246,20 @@ export default function TreatmentsPage() {
                   </motion.div>
                 </div>
               );
-            })
+            })}
+            </div>
           )}
         </TabsContent>
 
         {/* ===== TREATMENT PLANS TAB ===== */}
         <TabsContent value="plans" className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-            <div className="relative max-w-md flex-1">
+            <div className="relative max-w-md flex-1" data-tour="treatments-plan-search">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Search plans..." className="pl-9 bg-muted/30 border-border/40" value={planSearch} onChange={(e) => setPlanSearch(e.target.value)} />
             </div>
             {isClinical && (
-              <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setCreatePlanOpen(true); if (planLineItems.length === 0) addPlanItem(); }}>
+              <Button size="sm" className="bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/20" onClick={() => { setCreatePlanOpen(true); if (planLineItems.length === 0) addPlanItem(); }} data-tour="treatments-new-plan">
                 <Plus className="mr-2 h-4 w-4" /> New Treatment Plan
               </Button>
             )}
@@ -266,7 +268,7 @@ export default function TreatmentsPage() {
           {filteredPlans.length === 0 ? (
             <EmptyState icon={ClipboardList} title="No treatment plans" description="Create a treatment plan to organize multi-visit procedures for patients." actionLabel="New Treatment Plan" onAction={() => { setCreatePlanOpen(true); if (planLineItems.length === 0) addPlanItem(); }} />
           ) : (
-            <motion.div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible">
+            <motion.div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" variants={stagger.container} initial="hidden" animate="visible" data-tour="treatments-plans-list">
               {filteredPlans.map((plan) => {
                 const progress = plan.items_count > 0 ? Math.round((plan.completed_count / plan.items_count) * 100) : 0;
                 return (
