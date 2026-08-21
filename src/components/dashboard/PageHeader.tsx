@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { PageTutorial, PageTutorialProps } from "@/components/dashboard/PageTutorial";
+import { PageTourButton } from "@/components/dashboard/tour/PageTourButton";
+
 
 interface PageHeaderProps {
   title: string;
