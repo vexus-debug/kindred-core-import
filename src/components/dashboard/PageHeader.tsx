@@ -29,10 +29,12 @@ export function PageHeader({ title, description, children, badge, tutorial }: Pa
         </div>
         <p className="text-sm text-muted-foreground mt-0.5">{description}</p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2" data-tour="page-actions">
+        <PageTourButton />
         {tutorial && <PageTutorial {...tutorial} />}
         {children}
       </div>
+
     </motion.div>
   );
 }
